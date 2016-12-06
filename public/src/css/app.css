@@ -1,0 +1,24 @@
+.blckbtn {
+    background-color: #000000;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+body {
+    background-color: #EAEAEA;
+}
+.container .row {
+    margin-top:100px;
+}
+
+.link, p, h1, h2, h3, h4, h5, .form-control{
+    font-family: "Courier New";
+}
+
+.panel-heading {
+    background-color: black !important;
+    color: white;
+}
