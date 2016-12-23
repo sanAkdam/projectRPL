@@ -6,6 +6,15 @@
     <div class="panel">
         <header><h3></h3></header>
             <h3>Report Posting</h3>
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <article class="panel-primary">
                 <div class="panel-footer">
                     @if($post['foto'])

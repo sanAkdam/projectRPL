@@ -5,7 +5,6 @@
 @section('content')
     <div class="panel">
         <div class="panel-body">
-            {{ Auth::check()? "Login" : "Logout" }}
             <h3>POSTING BARANG</h3>
             @if (count($errors) > 0)
                 <div class="alert alert-danger">

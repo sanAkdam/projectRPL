@@ -12,7 +12,7 @@ class CariController extends Controller
         if ($postings->count()) {
             return view('posting.postingcari', compact('postings'));
         } else {
-            echo "User Not Found";
+            echo "Maaf, Posting Tidak Ada";
         }
     }
 }

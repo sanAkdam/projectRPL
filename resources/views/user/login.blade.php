@@ -30,6 +30,7 @@
                         L O G I N
                     </button>
                 </div>
+                <input type="hidden" name="url" value="{{ URL::previous() }}">
             </form>
         </div>
     </div>

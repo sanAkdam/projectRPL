@@ -34,17 +34,17 @@ Route::group(['middleware' => ['web']], function() {
         'as' => 'logout',
     ]);
 
-    Route::get('barang/list/hilang', [
+    Route::get('/barang/list/hilang', [
         'uses' => 'HomeController@listBarangHilang',
         'as' => 'listBarangHilang',
     ]);
 
-    Route::get('barang/list/ketemu', [
+    Route::get('/barang/list/ketemu', [
         'uses' => 'HomeController@listBarangKetemu',
         'as' => 'listBarangKetemu',
     ]);
 
-    Route::get('admin/list/users/all', [
+    Route::get('/admin/list/users/all', [
         'uses' => 'AdminController@selectAllUsers',
         'as' => 'listuser',
         'middleware' => 'auth',
@@ -58,7 +58,8 @@ Route::group(['middleware' => ['web']], function() {
 
     Route::get('/barang/posting/{id}', [
        'uses' => 'MemberController@updatePosting',
-        'as' => 'update'
+        'as' => 'update',
+        'middleware' => 'auth',
     ]);
 
     Route::post('/barang/update/posting/{id}', [
@@ -92,21 +93,22 @@ Route::group(['middleware' => ['web']], function() {
     Route::post('/user/barang/posting/update', [
         'uses' => 'MemberController@update',
         'as' => 'barangUpdate',
+        'middleware' => 'auth',
     ]);
 
     Route::get('/user/posting/report/{id}', [
        'uses' => 'MemberController@reportPosting',
        'as' => 'reportPosting',
-       'middleware' => 'auth',
+        'middleware' => 'auth',
     ]);
 
-    Route::get('/admin/posting/lihat/{id}', [
+    Route::get('/admin/posting/lihat/{posting_id}', [
         'uses' => 'AdminController@lihatUserPosting',
         'as' => 'lihatposting',
         'middleware' => 'auth',
     ]);
 
-    Route::get('/admin/posting/delete/{id}', [
+    Route::get('/admin/posting/delete/{posting_id}', [
         'uses' => 'AdminController@deleteUserPosting',
         'as' => 'admindeleteposting',
         'middleware' => 'auth',
@@ -115,6 +117,12 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/admin/report/delete/{id}', [
        'uses' => 'AdminController@deleteUserReport',
         'as' => 'deletereport',
+        'middleware' => 'auth',
+    ]);
+
+    Route::get('/admin/user/delete/{id}', [
+        'uses' => 'AdminController@adminDeleteUser',
+        'as' => 'userdelete',
         'middleware' => 'auth',
     ]);
 

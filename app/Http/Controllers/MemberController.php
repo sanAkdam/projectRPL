@@ -19,11 +19,9 @@ class MemberController extends Controller
         ]);
 
         $user = Auth::user();
-        if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
-            $namafoto = $user->nim . '-' . $file->getClientOriginalName();
-            $file->move('posting', $namafoto);
-        }
+        $file = $request->file('foto');
+        $namafoto = $user->nim . '-' . $file->getClientOriginalName();
+        $file->move('posting', $namafoto);
 
         Posting::create([
             'user_id' => $user->nim,
@@ -89,13 +87,18 @@ class MemberController extends Controller
         $user = Auth::user();
         $posting = Posting::find($id);
 
-        if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
-            $request['foto'] = $user->nim . '-' . $file->getClientOriginalName();
-            $file->move('posting', $request['foto']);
-        }
+        $file = $request->file('foto');
+        $namafoto = $user->nim . '-' . $file->getClientOriginalName();
+        $file->move('posting', $namafoto);
 
-        $posting->update($request);
+        $posting->update([
+            'user_id' => $user->nim,
+            'judulposting' => $request['judulposting'],
+            'tanggal' => $request['tanggal'],
+            'jenisposting' => $request['jenisposting'],
+            'foto' => $namafoto,
+            'deskripsi' => $request['deskripsi'],
+        ]);
 
         if ($request['jenisposting'] == 1) {
             return redirect()->route('listBarangHilang');

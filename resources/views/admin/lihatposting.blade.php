@@ -8,22 +8,22 @@
         <h3>Report Posting</h3>
         <article class="panel-primary">
             <div class="panel-footer">
-                @if($post['foto'])
+                @if($post->foto)
                     <img class="img-responsive" src="/posting/{{ $post['foto'] }}" alt="">
                 @else
                     <p>No Photos</p>
                 @endif
 
                 <tr>
-                    <h3 style="float: left">{{ $post['judulposting'] }} </h3>
-                    <p style="float: right"><?php echo date('d M Y',strtotime($post['tanggal'])); ?></p>
+                    <h3 style="float: left">{{ $post->judulposting }} </h3>
+                    <p style="float: right"><?php echo date('d M Y',strtotime($post->tanggal)); ?></p>
                 </tr>
                 <br><br>
                 <hr>
-                <h4>{{ $post['deskripsi'] }}</h4>
+                <h4>{{ $post->deskripsi }}</h4>
             </div>
                 <div class="form-group">
-                    <a href="{{ route('admindeleteposting', ['post_id' => $post['id']]) }}" class="blckbtn btn form-control">DELETE POSTING</a>
+                    <a href="{{ route('admindeleteposting', ['posting_id' => $post->id]) }}" class="blckbtn btn form-control">DELETE POSTING</a>
                 </div>
 
         </article>

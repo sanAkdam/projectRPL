@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class RedirectIfAuthenticated
 {
@@ -18,10 +19,11 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check()) {
-            return $next($request);
+        if (Auth::guest()) {
+            Session::put('attempted_url', URL::current());
+
+            return redirect('/login');
         }
-        $request->session()->put('next', $request->path());
         return $next($request);
     }
 }

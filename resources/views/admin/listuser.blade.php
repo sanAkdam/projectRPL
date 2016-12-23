@@ -15,7 +15,7 @@
                             <h4>{{ $user->nim }}</h4>
                         </td>
                         <td>
-                            <button type="submit" class="form-control blckbtn">DELETE</button>
+                            <a href="{{ route('userdelete', ['id' => $user->id]) }}" class="blckbtn btn form-control">DELETE USER</a>
                         </td>
                     </tr>
                     @endforeach

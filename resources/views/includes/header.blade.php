@@ -57,20 +57,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="link"><a href="{{ route('listBarangKetemu') }}">BARANG KETEMU</a></li>
-                <li class="link"><a href="{{ route('listBarangHilang') }}">BARANG HILANG</a></li>
+                <li class="{{ Request::is('barang/list/ketemu') ? 'active' : 'link' }}"><a href="{{ route('listBarangKetemu') }}">BARANG KETEMU</a></li>
+                <li class="{{ Request::is('barang/list/hilang') ? 'active' : 'link' }}"><a href="{{ route('listBarangHilang') }}">BARANG HILANG</a></li>
 
                 @if(Auth::guest())
-                    <li class="link"><a href="{{ url('/login') }}">LOGIN</a></li>
-                    <li class="link"><a href="{{ url('/register') }}">REGISTER</a></li>
+                    <li class="{{ Request::is('login') ? 'active' : 'link' }}"><a href="{{ url('/login') }}">LOGIN</a></li>
+                    <li class="{{ Request::is('register') ? 'active' : 'link' }}"><a href="{{ url('/register') }}">REGISTER</a></li>
                 @else
                     @if(Auth::user()->status == 'admin')
-                        <li class="link"><a href="{{ route('listuser') }}">USERS</a></li>
-                        <li class="link"><a href="{{ route('pesanreport') }}">REPORT</a></li>
+                        <li class="{{ Request::is('admin/list/users/all') ? 'active' : 'link' }}"><a href="{{ route('listuser') }}">USERS</a></li>
+                        <li class="{{ Request::is('admin/list/users/report') ? 'active' : 'link' }}"><a href="{{ route('pesanreport') }}">REPORT</a></li>
                     @else
-                        <li class="link"><a href="{{ route('posting') }}">POSTING BARANG</a></li>
+                        <li class="{{ Request::is('barang/posting') ? 'active' : 'link' }}"><a href="{{ route('posting') }}">POSTING BARANG</a></li>
                     @endif
-                        <li class="link"><a href="{{ url('/logout') }}">LOGOUT</a></li>
+                        <li class="{{ Request::is('logout') ? 'active' : 'link' }}"><a href="{{ url('/logout') }}">LOGOUT</a></li>
                 @endif
             </ul>
         </div><!-- /.navbar-collapse -->

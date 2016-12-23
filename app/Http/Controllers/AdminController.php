@@ -19,20 +19,26 @@ class AdminController extends Controller
         return view('admin.pesanreport', compact('reports'));
     }
 
-    public function lihatUserPosting($id) {
-        $post = Posting::where('id', $id)->first();
+    public function lihatUserPosting($posting_id) {
+        $post = Posting::where('id', $posting_id)->first();
         return view('admin.lihatposting', compact('post'));
     }
 
-    public function deleteUserPosting($id) {
-        $post = Posting::where('id', $id)->first();
+    public function deleteUserPosting($posting_id) {
+        $post = Posting::where('id', $posting_id)->first();
         $post->delete();
-        return redirect()->route('reportPosting');
+        return redirect()->route('pesanreport');
     }
 
     public function deleteUserReport($id) {
         $report = Report::where('id', $id)->first();
         $report->delete();
-        return redirect()->route('reportPosting');
+        return redirect()->route('pesanreport');
+    }
+
+    public function adminDeleteUser($id) {
+        $user = User::where('id', $id)->first();
+        $user->delete();
+        return redirect()->route('listuser');
     }
 }
